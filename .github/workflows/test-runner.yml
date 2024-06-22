@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: self-hosted #ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -16,14 +16,14 @@ jobs:
     - name: Check running docker services
       run: sudo docker ps
 
-    - name: Build Nginx Docker Image
-      run: sudo docker build -t csn-nginx .
-
     - name: Stop Docker Container
       run: sudo docker stop csn-nginx || true
 
     - name: Delete the Docker Container
       run: sudo docker rm csn-nginx || true
+
+    - name: Build Nginx Docker Image
+      run: sudo docker build -t csn-nginx .
 
     - name: Run the Docker Container
       run: sudo docker run -d --name csn-nginx -p 8080:80 csn-nginx
