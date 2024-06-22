@@ -14,4 +14,4 @@ jobs:
       run: pwd
 
     - name: Check running docker services
-      run: docker ps
+      run: sudo docker ps
